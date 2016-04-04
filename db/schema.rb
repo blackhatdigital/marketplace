@@ -11,14 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404232328) do
+ActiveRecord::Schema.define(version: 20160404233330) do
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "profile_file_name"
+    t.string   "profile_content_type"
+    t.integer  "profile_file_size"
+    t.datetime "profile_updated_at"
   end
 
 end
