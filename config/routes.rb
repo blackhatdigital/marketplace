@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :services
+  resources :services do
+      resources :orders
+  end
 
   get 'seller' => "services#seller"
   

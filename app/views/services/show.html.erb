@@ -10,6 +10,8 @@
   <%= @service.description %>
 </p>
 
+<%= link_to 'BUY NOW', new_service_order_path(@service) %>
+
 <p>
   <strong>Price:</strong>
   <%= @service.price %>

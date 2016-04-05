@@ -6,4 +6,5 @@ class Service < ActiveRecord::Base
 	validates_attachment_content_type :profile, content_type: /\Aimage\/.*\Z/
 
 	belongs_to :user
+	has_many :orders
 end
