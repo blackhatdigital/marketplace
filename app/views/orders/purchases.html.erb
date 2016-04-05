@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Purchase History</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>Product Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= image_tag order.service.profile.url(:medium) %></td>
+        <td><%= order.service.name %></td>
+        <td><%= order.service.description %></td>
+        <td><%= order.service.price %></td>
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service', new_service_path %>

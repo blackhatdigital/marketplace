@@ -3,6 +3,15 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   # GET /orders
   # GET /orders.json
+  def sales
+    @orders = Order.where(seller: current_user.id).order("created_at DESC")
+  end 
+
+  def purchases
+    @orders = Order.where(buyer: current_user.id).order("created_at DESC")
+  end 
+
+
   def index
     @orders = Order.all
   end
@@ -16,7 +25,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @service = Service.find(params[:service_id])
-
   end
 
   # GET /orders/1/edit
@@ -28,11 +36,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @service = Service.find(params[:service_id])
-    @seller = @service.userID #feel like this is wrong where does user come from.
+    @seller = @service.userID
 
     @order.service_id = @service.id
     @order.buyer_id = current_user.id
-    @order.seller_id = @service.id
+    @order.seller_id = @seller
 
     respond_to do |format|
       if @order.save

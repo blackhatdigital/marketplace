@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       resources :orders
   end
 
+  get 'sales' => 'orders#sales' # History of services sold
+  get 'purchases' => 'orders#purchases' # History of services purchased
+
   get 'seller' => "services#seller"
   
   # The priority is based upon order of creation: first created -> highest priority.
