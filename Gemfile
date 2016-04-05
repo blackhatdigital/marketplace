@@ -15,6 +15,7 @@ gem 'foundation-rails'
 gem "paperclip", "~> 5.0.0.beta1"
 gem "paperclip-dropbox", ">= 1.1.7"
 gem 'devise'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug'
