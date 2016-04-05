@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:seller, :new, :create, :edit, :update, :destroy ]
   
   # GET /services
   # GET /services.json
@@ -10,6 +10,10 @@ class ServicesController < ApplicationController
 
   # GET /services/1
   # GET /services/1.json
+  def seller
+    @services = Service.where(userID: current_user).order("created_at DESC")
+  end
+
   def show
   end
 
