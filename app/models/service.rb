@@ -1,5 +1,5 @@
 class Service < ActiveRecord::Base
-	has_attached_file	:profile, styles: { medium: "200x200#", thumb: "100x100#" }, default_url: "missing.png",
+	has_attached_file	:profile, styles: { medium: "236x236#", thumb: "100x100#" }, default_url: "missing.png",
 						:storage => :dropbox,
    						:dropbox_credentials => Rails.root.join("config/dropbox.yml")
    						
