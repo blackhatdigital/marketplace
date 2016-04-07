@@ -10,7 +10,7 @@
   <%= @service.description %>
 </p>
 
-<%= link_to 'BUY NOW', new_service_order_path(@service) %>
+<%= link_to 'BUY NOW', new_service_order_path(@service), data: {no_turbolink: true} %>
 
 <p>
   <strong>Price:</strong>
