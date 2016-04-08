@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     @service = Service.find(params[:service_id])
   end
 
-  # GET /orders/1/edit
+  # GET /orders/1/edit  
   def edit
   end
 
@@ -42,19 +42,33 @@ class OrdersController < ApplicationController
     @order.buyer_id = current_user.id
     @order.seller_id = @seller
 
+    PinPayment.secret_key = 'CRuWFFtjN2m3djtcNB439A'
+    card_token = params[:card_token]
+    number = params[:number]
+    name = params[:name]
+    expiry_year = params[:expiry_year]
+    expiry_month = params[:expiry_month]
+    cvc = params[:cvc]
 
-   Stripe.api_key = ENV["STRIPE_API_KEY"]
-    token = params[:stripeToken]
+    charge = PinPayment::Charge.create(
+          email:       current_user.email,
+          description: @service.description,
+          amount:      (@service.price * 100).floor,
+          currency:    'AUD',
+          ip_address:  request.remote_ip,
+          card:        {
+            number:           number,
+            expiry_month:     expiry_month,
+            expiry_year:      expiry_year,
+            cvc:              cvc,
+            name:             current_user.name,
+          }
+          )   
 
-    begin
-      charge = Stripe::Charge.create(
-        :amount => (@service.price * 100).floor,
-        :currency => "aud",
-        :card => token
-        )
-    rescue Stripe::CardError => e
-      flash[:danger] = e.message
+    if charge.success?
+    alert ("yo success")
     end
+
 
     respond_to do |format|
       if @order.save

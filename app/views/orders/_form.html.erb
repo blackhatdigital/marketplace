@@ -23,7 +23,7 @@
 
       <div class="form-group">
         <%= f.label :address %>
-        <%= f.text_field :address, class: "form-control" %>
+        <%= f.text_field :address, id: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :city %>
@@ -35,27 +35,28 @@
       </div>
 
       <div class="form-group">
-        
-          <div class="">
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, { :name => nil, :'data-stripe' => "number", class: "form-control" } %>
+          <div>
+            <%= label_tag :number, "Credit Card Number" %>
+            <%= text_field_tag :number, nil, { :name => nil, id: "cc-number" } %>
           </div>
-          <div class="">
-            <%= label_tag :card_code, "CVC" %>
-            <%= text_field_tag :card_code, nil, { :name => nil, :'data-stripe' => "cvc", class: "form-control" } %>
+          <div>
+            <%= label_tag :name, "Credit Card Number" %>
+            <%= text_field_tag :name, nil, { :name => nil, id: "cc-name" } %>
           </div>
-        
+          <div>
+            <%= label_tag :cvc, "CVC" %>
+            <%= text_field_tag :cvc, nil, { :name => nil, id: "cc-cvc" } %>
+          </div>
       </div>
+
       <div class="form-group">
         <%= label_tag nil, "Expiration Date" %>
-        
           <div class="">
-            <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :'data-stripe' => "exp-month", class: "form-control" } %>
+            <%= text_field_tag :expiry_month, nil, { :name => nil, id: "expiry-month" } %>
           </div>
           <div class="">
-            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :'data-stripe' => "exp-year", class: "form-control" } %>
+            <%= text_field_tag :expiry_year, nil, { :name => nil, id: "expiry-year" } %>
           </div>
-        
       </div>
 
       <div class="form-group">
